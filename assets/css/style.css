@@ -1,6 +1,13 @@
 html,
 body {
+    display: flex;
     margin: 0;
     padding: 0;
     height: 100%;
+}
+
+img {
+    flex-direction: column;
+    height: 300px;
+    width: 100;
 }
