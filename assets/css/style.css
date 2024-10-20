@@ -1,10 +1,157 @@
+/* NOTE: using body as a grid parent to its elements is a bad work ethic although it is possible
+<body> defines the entire webpage: The <body> tag represents the entire content of a webpage. 
+Using it as a layout container mixes the structural purpose of <body> (which contains all page content) with the layout logic.
+Using a <div class="container"> keeps layout concerns separate from the basic HTML structure. */
+
+
+/* ADVICE!- in order to understand better how the screen is divided
+we shall split the element and only after edit this
+at first we would want them to just have the element name so we can under stand 
+what is where  */
+
+
+/* When we would want to use grid: To define a strict two-dimensional layout  */
+
+/* When we would want to use flex: to create a flexible element 
+for one-dimensional layouts, meaning it controls alignment, distribution, and spacing 
+of items either in a row (horizontally) or a column (vertically). */
+
 html,
 body {
-    display: flex;
     margin: 0;
     padding: 0;
     height: 100%;
 }
+
+/* Container is used as a parent element that wraps the entire layout or a section of the webpage. 
+It allows you to define a consistent width, padding, and layout for the content inside it. */
+
+/* Title = The container itself is not a grid, but its elements are */
+.container {
+    height: 100%;
+    display: grid;
+    /*Defines that this container is a parent that will include grid elements */
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    /* DVIDING TO fr's: When dividing to fr's we are spliting the screen
+    horizontally(colums) and vertically(rows) with the amount of fr's we put as shown above
+    which means the page will be divided to 8fr columns and 8fr's rows 
+    repeat(8, 1fr) = 1fr  1fr  1fr  1fr  1fr  1fr  1fr  1fr
+    Note:  we are not going to have 8 rows in our webpage, but we use this amount of fr's for ratio of the pages elements*/
+
+    /*All of the above are to establish a grid system where child elements (grid items) 
+    will be arranged and divided with the grid-template. */
+}
+
+.container>* {
+    border: 1px solid black;
+}
+
+/* Title = Normal grid */
+header {
+    grid-column: 1 / span 8;
+    /*"1" = starts from - 1 
+    "span 8" - takes over the whole width of the page(8 fr's in this case) */
+    grid-row: 1;
+    /*Can be written as 1 / span 1 as well.
+    means it takes 1fr out of 8(כולל) on this page */
+    text-align: center;
+    /* Centers the text(can be used not in grid elements as well */
+}
+
+/* nav = menu, flex inside a grid */
+nav {
+    grid-column: 1 / span 2;
+    grid-row: 2 / span 6;
+    text-align: center;
+    /* text align & padding bottom is not a flex property so we can add it before the display */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    /* we added display flex in order to use its properties in this element
+    in this case to space this evenly and to design them in a column  */
+}
+
+/* Title = Normal grid */
+main {
+    grid-column: 3 / span 6;
+    /*Yo may ask why do we start from 3 and not 2
+    This is because  that we need to start AFTER where the last margin ended (this case 2(line 47)) 
+    and the span is how many fr's it will cover, this case 6(because - 3,4,5,6,7,8 = span 6)*/
+    grid-row: 2/ span 6;
+    /*so it will cover the same as space the nav */
+    display: grid;
+    /* In addition to setting the vaules of this element(grid row and grid column) we are preparing to use grid inside this element to
+    also divide the elements within it so we will add the line display: grid; after we set the space this element(main) will take*/
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+
+main>* {
+    border: solid black 1px;
+}
+
+/* Title = Normal grid */
+#main1 {
+    grid-column: 1 / span 1;
+    grid-row: 1/ span 3;
+}
+
+/* Title = flex inside grid */
+#main2 {
+    grid-column: 2 / span 1;
+    grid-row: 1/ span 3;
+    display: flex;
+    /* we want to fit the content inside this grid and tp space it out evenly,
+     and for that we would need flex properties
+     so we will add the line display: flex; */
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    overflow: scroll;
+    /* all of the above are flex properties */
+}
+
+/* Title = grid inside grid */
+#main3 {
+    grid-column: 3 / span 1;
+    grid-row: 1/ span 3;
+    display: grid;
+    grid-template-columns: 1;
+    grid-template-rows: repeat(3, 1fr);
+
+}
+
+main img {
+    height: 50px;
+}
+
+#main3>* {
+    border: solid black 1px;
+}
+
+/* 
+main {
+    grid-column: 3 / span 6;
+    /* Yo may ask why do we start from 3 and not 2
+    This is because  that we need to start AFTER where the last margin ended (this case 2(line 47)) 
+    and the span is how many fr's it will cover, this case 6(because - 3,4,5,6,7,8 = span 6)*/
+/* grid-row: 2/ span 6;
+    /*so it will cover the same as space the nav */
+/* }  */
+
+/* Title = flex inside grid */
+footer {
+    grid-column: 1/span 8;
+    grid-row: 8/span 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
 
 img {
     flex-direction: column;
