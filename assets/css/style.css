@@ -80,6 +80,11 @@ main {
     and the span is how many fr's it will cover, this case 6(because - 3,4,5,6,7,8 = span 6)*/
     grid-row: 2/ span 6;
     /*so it will cover the same as space the nav */
+}
+
+/* main index properties */
+.main-index {
+
     display: grid;
     /* In addition to setting the vaules of this element(grid row and grid column) we are preparing to use grid inside this element to
     also divide the elements within it so we will add the line display: grid; after we set the space this element(main) will take*/
@@ -87,9 +92,19 @@ main {
     grid-template-rows: repeat(3, 1fr);
 }
 
-main>* {
-    border: solid black 1px;
+.main-index>* {
+    border: 1px solid black;
 }
+
+/* main-flowers properties */
+.main-flowers {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 2%;
+    flex-wrap: wrap;
+    overflow: scroll;
+}
+
 
 /* Title = Normal grid */
 #main1 {
